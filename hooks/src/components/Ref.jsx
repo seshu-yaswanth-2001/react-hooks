@@ -1,6 +1,24 @@
 // useRef - Store mutable values that persist between renders without causing re-renders, and access DOM elements directly.
 
 /**
+ * Why useRef:
+ * If there is a variable that need to be addressed with the same memory even the component renders then 
+ * we use the useRef.
+ * 
+ * for example:
+ * const user = {name: "Seshu", age: 21}
+ * on every render this will be updated to the another heap memory but to point the same intial render
+ * memory for entire lifecycle of the component use useRef as name said use the reference
+ * 
+ * 
+ * const user = useRef(user);
+ * 
+ * By default the useRef will have the intial value if we use the ref attribut in the html of the component
+ * then useRef will update to this element and object of this element.
+ * 
+ */
+
+/**
  * Key Concepts:
  * Returns an object with a current property that you can mutate
  * Doesn't trigger re-renders when the value changes
