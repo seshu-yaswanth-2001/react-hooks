@@ -2,6 +2,9 @@
 
 /**
  * Why useRef:
+ * 
+ * By default functions in javascript stores in heap memory because functions are non primitive
+ * 
  * If there is a variable that need to be addressed with the same memory even the component renders then 
  * we use the useRef.
  * 
