@@ -1,3 +1,25 @@
+/**
+ * Purpose:
+ * Alternative to useState for managing complex state logic with multiple sub-values or 
+ * when state updates depend on previous state.
+ * 
+ * Key Concepts:
+ * 
+ * Accepts a reducer function and initial state
+ * Returns current state and a dispatch function
+ * Similar to Redux pattern but for component-level state
+ * Better for complex state transitions than multiple useState calls
+ * 
+ * 
+ * When to use:
+ * 
+ * Managing state with multiple sub-values
+ * Complex state logic with many transitions
+ * State updates that depend on previous state
+ * When you need predictable state management pattern
+ */
+
+
 import { useMemo, useReducer, useState } from "react";
 
 const ACTIONS = {
