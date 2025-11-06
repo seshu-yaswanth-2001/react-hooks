@@ -15,6 +15,8 @@ const PostDetail = () => {
     queryKey: ["post", id],
     queryFn: () => singlePost(id),
     enabled: !!id,
+    staleTime: 30_000,
+    cacheTime: 60_000,
   });
 
   console.log(postData);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../API/api";
+import { Link } from "react-router-dom";
 
 const PostListing = () => {
   const {
@@ -24,7 +25,7 @@ const PostListing = () => {
       {postData?.map((post) => (
         <div className="post" key={post.id}>
           <div>
-            <a href={`/posts/${post.id}`}>{post.title}</a>
+            <Link to={`/posts/${post.id}`}>{post.title}</Link>
           </div>
           {post?.tags?.map((tag) => (
             <span className="tag" key={tag}>
