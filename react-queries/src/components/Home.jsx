@@ -4,6 +4,7 @@ const Home = () => {
   return (
     <div>
       <Link to="/posts">View Posts</Link>
+      <Link to="/postsInfinite">Posts Infinite Scroll</Link>
     </div>
   );
 };

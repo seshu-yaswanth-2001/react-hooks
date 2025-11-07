@@ -26,11 +26,7 @@ const PostDetail = () => {
 
   return (
     <div>
-      {postData?.map((post) => (
-        <div key={post.id}>
-          <h1>{post.title}</h1>
-        </div>
-      ))}
+      <h1>{postData.title}</h1>
     </div>
   );
 };
