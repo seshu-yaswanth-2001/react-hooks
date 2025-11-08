@@ -1,40 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchPaginatedData } from "../API/api";
+
 import { Link } from "react-router-dom";
+
+import useFetch from "./useFetch";
 
 const PostListing = () => {
   const [page, setPage] = useState(1);
   const limit = 5;
-  const queryClient = useQueryClient();
-  
+
   const {
     data: postData,
     isLoading,
     isError,
     error,
-    isPreviousData
-  } = useQuery({
-    queryKey: ["posts", page, limit],
-    queryFn: () => fetchPaginatedData(page, limit),
-    staleTime: 5 * 60 * 1000,
-    cacheTime: 10 * 60 * 1000,
-    keepPreviousData: true,
-  });
+    isPreviousData,
+    prefetchNextPage,
+  } = useFetch(page, limit);
 
   useEffect(() => {
-    if(postData && page < Math.ceil(postData.total / limit)) {
-      queryClient.prefetchQuery({
-        queryKey: ["posts", page + 1, limit],
-        queryFn: () => fetchPaginatedData(page + 1, limit),
-        staleTime: 5 * 60 * 1000,
-      })
-    }
-  }, [page, limit, queryClient, postData]);
+    prefetchNextPage();
+  }, [page, prefetchNextPage]);
 
   const totalPages = postData ? Math.ceil(postData.total / limit) : 0;
-  const hasNextPage = page < totalPages;
   const hasPreviousPage = page > 1;
+  const hasNextPage = page < totalPages;
 
   return (
     <div className="container">

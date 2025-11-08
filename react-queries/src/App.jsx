@@ -6,6 +6,7 @@ import Home from "./components/Home";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PostInfinite from "./components/PostInfinite";
+import UpdatePosts from "./components/UpdatePosts";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/posts" element={<PostListing />} />
           <Route path="/postsInfinite" element={<PostInfinite />} />
           <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/createPost" element={<UpdatePosts />} />
         </Routes>
       </Router>
     </div>

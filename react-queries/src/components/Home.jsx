@@ -5,6 +5,7 @@ const Home = () => {
     <div>
       <Link to="/posts">View Posts</Link>
       <Link to="/postsInfinite">Posts Infinite Scroll</Link>
+      <Link to="/createPost">Create a post</Link>
     </div>
   );
 };
