@@ -72,7 +72,7 @@ export const singlePost = async (id) => {
 
   if (!response.ok) throw new Error("Network response was not ok");
 
-  const postData = response.json();
+  const postData = await response.json();
 
   return postData;
 };
@@ -97,4 +97,36 @@ export const createPost = async (newPost) => {
     console.log(err);
     throw err;
   }
+};
+
+export const updatePost = async ({ id, patch }) => {
+  try {
+    const response = await fetch(`https://dummyjson.com/posts/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    });
+
+    if (!response.ok) {
+      const errMessage = await response.text();
+      throw new Error(
+        `Update Failed: ${response.status} ${errMessage || response.statusText}`
+      );
+    }
+
+    return await response.json();
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const deletePost = async (id) => {
+  const res = await fetch(`https://dummyjson.com/posts/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    const txt = await res.text().catch(() => null);
+    throw new Error(`Delete failed: ${res.status} ${txt || res.statusText}`);
+  }
+  return res.json(); // confirmation
 };

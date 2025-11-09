@@ -15,11 +15,9 @@ const PostDetail = () => {
     queryKey: ["post", id],
     queryFn: () => singlePost(id),
     enabled: !!id,
-    staleTime: 30_000,
+    cqstaleTime: 30_000,
     cacheTime: 60_000,
   });
-
-  console.log(postData);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;

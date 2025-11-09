@@ -5,9 +5,7 @@ const UpdatePosts = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const { mutation } = useUpdate();
-
-  console.log("Mutation State:", mutation);
+  const { addMutation } = useUpdate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +17,7 @@ const UpdatePosts = () => {
       return;
     }
 
-    mutation.mutate({
+    addMutation.mutate({
       title: trimmedTitle,
       body: trimmedBody,
       userId: 1,
@@ -33,24 +31,26 @@ const UpdatePosts = () => {
         placeholder="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        disabled={mutation.isLoading}
+        disabled={addMutation.isLoading}
       />
       <textarea
         placeholder="body"
         value={body}
         onChange={(e) => setBody(e.target.value)}
-        disabled={mutation.isLoading}
+        disabled={addMutation.isLoading}
       />
-      <button type="submit" disabled={mutation.isLoading}>
+      <button type="submit" disabled={addMutation.isLoading}>
         Submit
       </button>
 
-      {mutation.isError && (
-        <p style={{ color: "red" }}>Error: {mutation.error?.message}</p>
+      {addMutation.isError && (
+        <p style={{ color: "red" }}>Error: {addMutation.error?.message}</p>
       )}
 
-      {mutation.isSuccess && (
-        <p style={{ color: "green" }}>Post created (id: {mutation.data?.id})</p>
+      {addMutation.isSuccess && (
+        <p style={{ color: "green" }}>
+          Post updated (id: {addMutation.data?.id})
+        </p>
       )}
     </form>
   );
